@@ -9,6 +9,7 @@
     "install:server": "npm install --prefix server",
     "build:client": "npm run build --prefix client",
     "build": "npm run install:client && npm run build:client && npm run install:server",
+    "seed:prod": "node server/seedAll.js",
     "start": "node server/server.js"
   }
 }

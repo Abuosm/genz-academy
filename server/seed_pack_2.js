@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const seedPack2 = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/tai-learning-platform');
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/tai-learning-platform');
     const course = await Course.findOne();
     if (!course) process.exit(1);
 

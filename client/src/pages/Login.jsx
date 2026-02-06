@@ -66,7 +66,7 @@ const Login = () => {
   }
 
   return (
-    <GoogleOAuthProvider clientId="397451034442-f8m7f8i7j0j9j8j7j6j5j4j3j2j1j0j9.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <div className="min-h-screen bg-white flex overflow-hidden font-sans">
         {/* Left Side - Visual/Hero (Desktop Only) */}
         <div className="hidden lg:flex lg:w-1/2 relative bg-slate-50 items-center justify-center overflow-hidden border-r border-slate-100">

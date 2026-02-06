@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const seedLeetCodeData = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/tai-learning-platform');
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/tai-learning-platform');
     console.log('Connected to MongoDB');
 
     const course = await Course.findOne();
