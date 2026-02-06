@@ -7,6 +7,10 @@ import api from '../utils/api';
 
 const Login = () => {
   const { login, socialLogin, isAuthenticated, error, clearErrors } = useContext(AuthContext);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
