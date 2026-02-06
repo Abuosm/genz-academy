@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --theme-bg: #f8fafc;
+    --theme-surface: #ffffff;
+    --theme-border: #e2e8f0;
+    --theme-accent: #4f46e5;
+    --theme-text: #0f172a;
+    --theme-text-muted: #64748b;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900;
+  }
+}
