@@ -8,10 +8,13 @@ import api from '../utils/api';
 const Login = () => {
   const { login, socialLogin, isAuthenticated, error, clearErrors } = useContext(AuthContext);
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+  useEffect(() => {
+    if (!googleClientId) {
+      console.warn("⚠️ VITE_GOOGLE_CLIENT_ID is missing! Google Login will not work until you add it to your environment and redeploy.");
+    }
+  }, [googleClientId]);
 
   const { email, password } = formData;
 
@@ -66,7 +69,7 @@ const Login = () => {
   }
 
   return (
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider clientId={googleClientId || "missing-client-id"}>
       <div className="min-h-screen bg-white flex overflow-hidden font-sans">
         {/* Left Side - Visual/Hero (Desktop Only) */}
         <div className="hidden lg:flex lg:w-1/2 relative bg-slate-50 items-center justify-center overflow-hidden border-r border-slate-100">

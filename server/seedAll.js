@@ -1,9 +1,9 @@
 const { execSync } = require('child_process');
+const path = require('path');
 require('dotenv').config();
 
-const path = require('path');
-
 const seeders = [
+  'seed_core.js',
   'seed_pack_1.js',
   'seed_pack_2.js',
   'seed_pack_3.js',
