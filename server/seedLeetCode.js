@@ -14,7 +14,7 @@ const seedLeetCodeData = async () => {
       process.exit(1);
     }
 
-    await Assignment.deleteMany({});
+    // await Assignment.deleteMany({}); // Removed for master seeding
 
     const leetcodeProblems = [
       {

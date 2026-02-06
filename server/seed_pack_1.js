@@ -218,6 +218,7 @@ const seedPack1 = async () => {
       });
     }
 
+    // await Assignment.deleteMany({}); // Removed for master seeding
     await Assignment.insertMany([...problems, ...extraProblems]);
     console.log(`Successfully seeded Pack 1 (${problems.length + extraProblems.length} Questions)!`);
     process.exit(0);

@@ -1,5 +1,6 @@
 const { execSync } = require('child_process');
 const path = require('path');
+const mongoose = require('mongoose');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const seeders = [
@@ -20,11 +21,22 @@ async function runSeeders() {
     process.exit(1);
   }
 
+  try {
+    // Connect and wipe Assignments once at the start
+    await mongoose.connect(uri);
+    console.log('🧹 Wiping Assignments collection for a fresh start...');
+    const Assignment = require('./models/Assignment');
+    await Assignment.deleteMany({});
+    await mongoose.connection.close();
+  } catch (err) {
+    console.error('❌ Error during initial wipe:', err.message);
+    process.exit(1);
+  }
+
   for (const seeder of seeders) {
     try {
       const seederPath = path.join(__dirname, seeder);
       console.log(`\n📦 Running ${seeder}...`);
-      // Pass the process environment to ensure the child process sees the variables
       execSync(`node "${seederPath}"`, { stdio: 'inherit', env: process.env });
       console.log(`✅ Finished ${seeder}`);
     } catch (err) {
