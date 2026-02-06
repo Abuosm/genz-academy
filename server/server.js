@@ -10,6 +10,9 @@ dotenv.config();
 
 const app = express();
 
+// Trust proxy for Render/PaaS environments
+app.set('trust proxy', 1);
+
 // Security Middlewares
 app.use(helmet());
 app.use(express.json({ limit: '10kb' })); // Body limit to prevent DoS

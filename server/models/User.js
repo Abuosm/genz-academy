@@ -46,7 +46,7 @@ const UserSchema = new mongoose.Schema({
   },
   favoriteCompanies: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Company'
+    ref: 'company'
   }],
   leaderboardPoints: {
     type: Number,
