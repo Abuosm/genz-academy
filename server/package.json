@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "npm install --include=dev --prefix ../client && npm run build --prefix ../client"
+    "build": "echo 'Build handled by root package.json'"
   },
   "keywords": [],
   "author": "",
