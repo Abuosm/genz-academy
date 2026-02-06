@@ -4,9 +4,8 @@ module.exports = function (req, res, next) {
   // Get token from header
   const token = req.header('x-auth-token');
 
-  // Check if not token
+  // Check if no token
   if (!token) {
-    console.log('Auth Middleware: No token provided');
     return res.status(401).json({ msg: 'No token, authorization denied' });
   }
 
@@ -16,7 +15,6 @@ module.exports = function (req, res, next) {
     req.user = decoded.user;
     next();
   } catch (err) {
-    console.log('Auth Middleware: Token verification failed:', err.message);
     res.status(401).json({ msg: 'Token is not valid' });
   }
 };

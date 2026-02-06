@@ -131,7 +131,11 @@ export const AuthProvider = ({ children }) => {
   const clearErrors = () => dispatch({ type: 'CLEAR_ERRORS' });
 
   useEffect(() => {
-    loadUser();
+    if (localStorage.getItem('token')) {
+      loadUser();
+    } else {
+      dispatch({ type: 'AUTH_ERROR' });
+    }
   }, []);
 
   return (
