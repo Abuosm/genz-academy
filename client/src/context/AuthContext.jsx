@@ -65,9 +65,13 @@ export const AuthProvider = ({ children }) => {
       });
     } catch (err) {
       console.log('loadUser: Auth error', err);
-      localStorage.removeItem('token');
+      const msg = err.response?.data?.msg || '';
+      if (err.response?.status === 401 || msg === 'Token is not valid' || msg.toLowerCase().includes('expired')) {
+        localStorage.removeItem('token');
+      }
       dispatch({
-        type: 'AUTH_ERROR'
+        type: 'AUTH_ERROR',
+        payload: msg || 'Session expired. Please log in again.'
       });
     }
   };
