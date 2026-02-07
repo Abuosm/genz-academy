@@ -59,7 +59,10 @@ const Tests = () => {
                   <div className="flex items-center gap-2"><Award className="w-4 h-4" /> {test.difficulty}</div>
                 </div>
                 <div className="pt-4 mt-auto">
-                  <button className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
+                  <button
+                    onClick={() => alert(`Starting assessment: ${test.title} (Feature coming soon!)`)}
+                    className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
                     <Play className="w-4 h-4 fill-current" /> Start Assessment
                   </button>
                 </div>

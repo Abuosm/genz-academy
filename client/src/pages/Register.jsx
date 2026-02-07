@@ -17,12 +17,31 @@ const Register = () => {
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert('Passwords do not match');
-    } else {
-      register({ name, email, password });
+      return;
+    }
+
+    try {
+      await register({ name, email, password });
+    } catch (err) {
+      console.error('Registration error in component:', err);
+      let errorMsg = 'Registration failed';
+      if (err.response?.data?.errors) {
+        // Handle Zod validation errors
+        errorMsg = err.response.data.errors.map(e => e.message).join('\n');
+      } else if (err.response?.data?.msg) {
+        // Handle backend custom errors
+        errorMsg = err.response.data.msg;
+      } else if (err.response?.data?.message) {
+        // Handle generic backend message
+        errorMsg = err.response.data.message;
+      } else {
+        errorMsg = err.message || 'Unknown error';
+      }
+      alert(errorMsg);
     }
   };
 

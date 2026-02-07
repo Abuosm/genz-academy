@@ -13,6 +13,8 @@ const schemas = require('../utils/schemas');
 // @access   Public
 router.post('/register', validate(schemas.register), async (req, res) => {
   const { name, email, password } = req.body;
+  console.log('Register request received:', { name, email });
+
 
   try {
     let user = await User.findOne({ email });

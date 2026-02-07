@@ -5,6 +5,7 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const seeders = [
   'seed_core.js',
+  'seed_companies.js',
   'seed_pack_1.js',
   'seed_pack_2.js',
   'seed_pack_3.js',

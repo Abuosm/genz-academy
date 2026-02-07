@@ -37,10 +37,13 @@ const Login = () => {
 
   const handleGoogleSuccess = async (response) => {
     try {
+      console.log('Google Login Success, getting response:', response);
       const res = await api.post('/social/google', { idToken: response.credential });
+      console.log('Server response for Google Login:', res.data);
       socialLogin(res.data);
     } catch (err) {
       console.error('Google Auth UI Error:', err);
+      alert('Google Login Failed: ' + (err.response?.data?.msg || err.message));
     }
   };
 
