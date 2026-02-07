@@ -4,11 +4,29 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
+const mongoose = require('mongoose');
 const logger = require('./utils/logger');
 
 dotenv.config();
 
 const app = express();
+
+// Fix: Drop legacy index that causes Google Auth errors
+mongoose.connection.once('open', async () => {
+  try {
+    const collection = mongoose.connection.collection('users');
+    const indexes = await collection.indexes();
+    const fullNameIndex = indexes.find(index => index.name === 'fullName_1');
+
+    if (fullNameIndex) {
+      logger.info('Found legacy index "fullName_1". Dropping it to fix Auth errors...');
+      await collection.dropIndex('fullName_1');
+      logger.info('Successfully dropped "fullName_1" index.');
+    }
+  } catch (err) {
+    logger.error(`Error checking/dropping index: ${err.message}`);
+  }
+});
 
 // Trust proxy for Render/PaaS environments
 app.set('trust proxy', 1);
