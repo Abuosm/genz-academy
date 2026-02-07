@@ -1,18 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --theme-bg: #f8fafc;
-    --theme-surface: #ffffff;
-    --theme-border: #e2e8f0;
-    --theme-accent: #4f46e5;
-    --theme-text: #0f172a;
-    --theme-text-muted: #64748b;
+  body {
+    @apply bg-background text-gray-100 font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white;
   }
 
-  body {
-    @apply bg-slate-50 text-slate-900;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight;
   }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-glass-surface backdrop-blur-xl border border-glass-border shadow-xl;
+  }
+
+  .glass-card {
+    @apply bg-glass-surface backdrop-blur-lg border border-glass-border rounded-2xl hover:bg-glass-highlight transition-all duration-300;
+  }
+
+  .glass-input {
+    @apply bg-glass-surface border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 text-white placeholder-gray-500 transition-all;
+  }
+
+  .glass-button {
+    @apply bg-primary/90 hover:bg-primary text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-95 transition-all transform;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(112, 69, 255, 0.5);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-surfaceHighlight rounded-full hover:bg-primary/50 transition-colors;
+}
+
+/* Animations */
+.animate-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bg-grid-white {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
