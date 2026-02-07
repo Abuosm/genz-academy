@@ -95,7 +95,7 @@ const Courses = () => {
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-background/50 z-10 pointer-events-none lg:block hidden"></div>
             <iframe
               className="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
-              src="https://www.youtube.com/embed/WUWVumrvlS8?rel=0&controls=0&showinfo=0"
+              src="https://www.youtube.com/embed/m2Ux2PnJe6E?rel=0&controls=0&showinfo=0"
               title="Founder Intro"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
